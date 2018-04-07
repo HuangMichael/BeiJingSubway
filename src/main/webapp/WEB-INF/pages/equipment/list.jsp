@@ -49,8 +49,8 @@
                                                         required>
                                                     <option></option>
                                                     <template v-for="option in eqClasses">
-                                                        <option :value="option.cname">
-                                                            {{option.cname }}
+                                                        <option :value="option.description">
+                                                            {{option.description }}
                                                         </option>
                                                     </template>
                                                 </select>
@@ -70,7 +70,7 @@
                                                        placeholder="设备位置"/>
                                             </div>
                                             <div class="col-md-2">
-                                                <button id="searchBtn" class="btn btn-default"
+                                                <button id="searchBtn" class="btn btn-danger"
                                                         onclick="complexSearch()">查询
                                                 </button>
                                             </div>

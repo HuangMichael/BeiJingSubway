@@ -121,8 +121,6 @@ public class EquipmentController extends BaseController implements LocationSepar
         } else {
             searchPhrase = location + ",,,,";
         }
-
-        log.info("searchPhrase-------------------" + searchPhrase);
         Map<String, String[]> parameterMap = request.getParameterMap();
         Pageable pageable = new PageRequest(current - 1, rowCount.intValue(), super.getSort(parameterMap));
         return new PageUtils().searchBySortService(equipmentSearchService, searchPhrase, SEARCH_PARAM_SIZE, current, rowCount, pageable);

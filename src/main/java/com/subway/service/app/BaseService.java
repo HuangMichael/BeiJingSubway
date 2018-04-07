@@ -62,6 +62,10 @@ public class BaseService {
             }
         }
 
+        for (String a : array) {
+            System.out.println("a-------------" + a);
+        }
+
         return array;
     }
 

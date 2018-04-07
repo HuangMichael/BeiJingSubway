@@ -105,7 +105,7 @@ $(function () {
         runStatus = data;
     });
 
-    var url = "/commonData/findVEqClass";
+    var url = "/commonData/findEqClass";
     $.getJSON(url, function (data) {
         eqClasses = data;
     });
