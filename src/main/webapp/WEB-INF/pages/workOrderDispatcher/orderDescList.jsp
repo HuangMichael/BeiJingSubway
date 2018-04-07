@@ -24,7 +24,7 @@
             <td>${w.index+1}</td>
             <td>${workOrder.orderLineNo}</td>
             <td>${workOrder.equipments.description}</td>
-            <td>${workOrder.vlocations.locName}</td>
+            <td>${workOrder.locations.description}</td>
             <td>${workOrder.equipmentsClassification.description}</td>
             <td>${workOrder.orderDesc}</td>
             <td>

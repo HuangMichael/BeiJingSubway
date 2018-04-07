@@ -22,7 +22,7 @@
             <td width="10%">${w.index+1}</td>
             <td width="10%">${workOrder.equipments.eqCode}</td>
             <td width="15%">${workOrder.equipments.description}</td>
-            <td width="15%">${workOrder.vlocations.locName}</td>
+            <td width="15%">${workOrder.locations.description}</td>
             <td width="10%">${workOrder.equipmentsClassification.description}</td>
             <td width="15%"><input type="text" id="orderDesc${workOrder.id}" class="form-control" style="height:28px"
                                    value="${workOrder.orderDesc}" onchange="changeContent(${workOrder.id})"/>
