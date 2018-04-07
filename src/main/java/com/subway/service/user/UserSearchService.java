@@ -27,7 +27,7 @@ public class UserSearchService extends BaseService implements SortedSearchable {
      */
     public List<User> findByConditions(String searchPhrase, int paramSize) {
         String array[] = super.assembleSearchArray(searchPhrase, paramSize);
-        return userRepository.findByUserNameContainsAndVlocations_LocNameContains(array[0], array[1]);
+        return userRepository.findByUserNameContainsAndLocations_DescriptionContains(array[0], array[1]);
     }
 
 
@@ -37,7 +37,7 @@ public class UserSearchService extends BaseService implements SortedSearchable {
      */
     public Page<User> findByConditions(String searchPhrase, int paramSize, Pageable pageable) {
         String array[] = super.assembleSearchArray(searchPhrase, paramSize);
-        return userRepository.findByUserNameContainsAndVlocations_LocNameContains(array[0], array[1], pageable);
+        return userRepository.findByUserNameContainsAndLocations_DescriptionContains(array[0], array[1], pageable);
     }
 
 

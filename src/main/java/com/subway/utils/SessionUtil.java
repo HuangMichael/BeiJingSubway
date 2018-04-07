@@ -56,7 +56,7 @@ public class SessionUtil {
         if (user != null) {
             location = user.getLocations().getLocation();
         }
-        return location;
+        return (location==null)?"BJ":location;
     }
 
 }

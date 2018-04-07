@@ -193,26 +193,6 @@ public class EquipmentAccountService extends BaseService {
     }
 
 
-    /**
-     * @param billId    申请单id
-     * @param locId     位置编号
-     * @param eqClassId 设备分类
-     * @return
-     */
-    public ReturnObject batchUpdateEqs(Long billId, Long locId, Long eqClassId) {
-        EqBatchUpdateBill batchUpdateBill = eqBatchUpdateBillRepository.getOne(billId);
-        Vlocations vlocations = vlocationsRepository.findById(locId);
-        VeqClass veqClass = veqClassRepository.findById(eqClassId);
-        List<Equipments> equipmentsList = equipmentsRepository.findByLocationAndEquipmentsClassificationAndStatus(vlocations, veqClass, "1");
-        int eqNum = equipmentsList.size();
-        String contentDesc = vlocations.getLocName() + veqClass.getCname() + eqNum + "台设备";
-//修改设备的型号；
-        for (Equipments equipments : equipmentsList) {
-            equipments.setEqModel(batchUpdateBill.getModel());
-            equipmentsRepository.save(equipments);
-            batchUpdateBill.setDataType("已更新");
-        }
-        return commonDataService.getReturnType(true, contentDesc + "设备更新成功!", contentDesc + "设备更新失败!");
-    }
+
 
 }

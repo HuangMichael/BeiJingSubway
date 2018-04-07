@@ -123,22 +123,22 @@ public class EqBatchUpdateController extends BaseController {
      * @param lid
      * @return 根据位置id过滤对应的设备分类
      */
-    @RequestMapping(value = "/findCByLocId/{lid}", method = RequestMethod.GET)
-    @ResponseBody
-    public List<VeqClass> findEqClassesByLocationId(@PathVariable("lid") Long lid) {
-        return commonDataService.findEqClassesByLocationId(lid);
-    }
+//    @RequestMapping(value = "/findCByLocId/{lid}", method = RequestMethod.GET)
+//    @ResponseBody
+//    public List<VeqClass> findEqClassesByLocationId(@PathVariable("lid") Long lid) {
+//        return commonDataService.findEqClassesByLocationId(lid);
+//    }
 
 
-    /**
-     * @param lid
-     * @return 根据位置和设备分类过滤设备
-     */
-    @RequestMapping(value = "/findEqBy/{lid}/{cid}", method = RequestMethod.GET)
-    @ResponseBody
-    public List<Vequipments> findEqClassesByLocationId(@PathVariable("lid") Long lid, @PathVariable("cid") Long cid) {
-        return commonDataService.findEqByLocIdAndEqcId(lid, cid);
-    }
+//    /**
+//     * @param lid
+//     * @return 根据位置和设备分类过滤设备
+//     */
+//    @RequestMapping(value = "/findEqBy/{lid}/{cid}", method = RequestMethod.GET)
+//    @ResponseBody
+//    public List<Vequipments> findEqClassesByLocationId(@PathVariable("lid") Long lid, @PathVariable("cid") Long cid) {
+//        return commonDataService.findEqByLocIdAndEqcId(lid, cid);
+//    }
 
 
     /**

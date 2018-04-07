@@ -17,7 +17,7 @@ public interface EqBatchUpdateBillRepository extends JpaRepository<EqBatchUpdate
      * @param pageable    分页参数
      * @return
      */
-    Page<EqBatchUpdateBill> findByEqClass_CnameContainsAndLocations_LocNameContains(String eqClassDesc, String locDesc, Pageable pageable);
+    Page<EqBatchUpdateBill> findByEqClass_CnameContainsAndLocations_DescriptionContains(String eqClassDesc, String locDesc, Pageable pageable);
 
 
     /**
@@ -25,7 +25,7 @@ public interface EqBatchUpdateBillRepository extends JpaRepository<EqBatchUpdate
      * @param locDesc     位置描述
      * @return
      */
-    List<EqBatchUpdateBill> findByEqClass_CnameContainsAndLocations_LocNameContains(String eqClassDesc, String locDesc);
+    List<EqBatchUpdateBill> findByEqClass_CnameContainsAndLocations_DescriptionContains(String eqClassDesc, String locDesc);
 
 
     /**

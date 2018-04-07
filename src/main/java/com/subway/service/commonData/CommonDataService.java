@@ -243,19 +243,11 @@ public class CommonDataService extends BaseService {
      * @param id 位置编号
      * @return 查询位置下对应的设备分类
      */
-    public List<VeqClass> findEqClassesByLocationId(Long id) {
-        return equipmentsRepository.findEqClassesByLocationId(id);
-    }
+//    public List<VeqClass> findEqClassesByLocationId(Long id) {
+//        return equipmentsRepository.findEqClassesByLocationId(id);
+//    }
 
 
-    /**
-     * @param lid
-     * @param cid
-     * @return 查询位置下对应的设备分类
-     */
-    public List<Vequipments> findEqByLocIdAndEqcId(Long lid, Long cid) {
-        return equipmentsRepository.findEqByLocIdAndEqcId(lid, cid);
-    }
 
 
     /**

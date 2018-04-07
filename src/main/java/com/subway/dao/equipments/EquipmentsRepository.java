@@ -6,7 +6,7 @@ import com.subway.domain.equipments.EquipmentsClassification;
 import com.subway.domain.equipments.VeqClass;
 import com.subway.domain.equipments.Vequipments;
 import com.subway.domain.locations.Locations;
-import com.subway.domain.locations.Vlocations;
+//import com.subway.domain.locations.Vlocations;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -81,12 +81,12 @@ public interface EquipmentsRepository extends CrudRepository<Equipments, Long>, 
     @Query(nativeQuery = true, value = "select v.order_line_no,v.fix_desc as aaa,date_format(v.report_time,'%Y-%m-%d %H:%i:%s') ,v.fix_desc,v.node_state  from v_work_order_last_status v where v.equipments_id =:eid")
     List<Object> findEndFixStepsByEid(@Param("eid") Long eid);
 
-    /**
-     * @param id
-     * @return 根据位置过滤设备分类
-     */
-    @Query("select vc from VeqClass vc where vc.id in (select distinct  e.equipmentsClassification.id from Equipments e where e.vlocations.id =:id)")
-    List<VeqClass> findEqClassesByLocationId(@Param("id") Long id);
+//    /**
+//     * @param id
+//     * @return 根据位置过滤设备分类
+//     */
+//    @Query("select vc from VeqClass vc where vc.id in (select distinct  e.equipmentsClassification.id from Equipments e where e.vlocations.id =:id)")
+//    List<VeqClass> findEqClassesByLocationId(@Param("id") Long id);
 
 
     /**
@@ -94,8 +94,8 @@ public interface EquipmentsRepository extends CrudRepository<Equipments, Long>, 
      * @param cid
      * @return 根据位置和设备分类过滤设备
      */
-    @Query("select ve from Vequipments ve where ve.id in ( select e.id from Equipments e where e.vlocations.id =:lid and e.equipmentsClassification.id =:cid)")
-    List<Vequipments> findEqByLocIdAndEqcId(@Param("lid") Long lid, @Param("cid") Long cid);
+//    @Query("select ve from Vequipments ve where ve.id in ( select e.id from Equipments e where e.vlocations.id =:lid and e.equipmentsClassification.id =:cid)")
+//    List<Vequipments> findEqByLocIdAndEqcId(@Param("lid") Long lid, @Param("cid") Long cid);
 
     /**
      * @return
@@ -103,14 +103,6 @@ public interface EquipmentsRepository extends CrudRepository<Equipments, Long>, 
     @Query("select e.id from Vequipments e  order by e.id asc")
     List<Long> findAllId();
 
-
-    /**
-     * @param vlocations
-     * @param veqClass
-     * @param status
-     * @return 根据设备位置和设备分类 设备状态查询设备
-     */
-    List<Equipments> findByLocationAndEquipmentsClassificationAndStatus(Vlocations vlocations, VeqClass veqClass, String status);
 
 
     //      new version for searching
