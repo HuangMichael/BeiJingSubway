@@ -20,7 +20,7 @@
 
             <div class="col-md-2">
                 <label class="control-label">设备位置：</label>
-                <div class="form-control-static">${workOrder.vlocations.locName}</div>
+                <div class="form-control-static">${workOrder.location.description}</div>
             </div>
 
 

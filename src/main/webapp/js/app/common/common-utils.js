@@ -324,3 +324,51 @@ function setFormReadStatus(formId, formLocked, except) {
     }
 }
 
+
+/**
+ *
+ * @param value 显示状态
+ */
+function showStatus(value) {
+    var status = ["启用", "停用"];
+    return status[value];
+
+}
+
+
+/**
+ *
+ * @param value 显示状态
+ */
+function showEqClass(value) {
+    return value["description"];
+
+}
+
+
+
+/**
+ *
+ * @param value 显示运行状态
+ */
+function showRunStatus(value) {
+    var runStatus = ["正常", "维修"];
+    return runStatus[value];
+
+}
+
+
+/**
+ *
+ * @param value 显示状态
+ * @return {*}
+ */
+function showLocName(value) {
+    return value["description"];
+}
+
+
+
+
+
+

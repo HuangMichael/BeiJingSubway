@@ -63,8 +63,6 @@ public class WorkOrderReportCart {
     @Column(length = 1)
     private String status;
 
-
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "locations_id", referencedColumnName = "id")
     private Locations locations;  //所属位置

@@ -82,7 +82,7 @@
                                                             <td>
                                                                 <a onclick="showEqDetailByEqId(${workOrder.equipments.id})">${workOrder.equipments.description}</a>
                                                             </td>
-                                                            <td>${workOrder.vlocations.locName}</td>
+                                                            <td>${workOrder.locations.description}</td>
                                                             <td>${workOrder.equipmentsClassification.description}</td>
                                                             <td>${workOrder.reporter}</td>
                                                             <td><fmt:formatDate value="${workOrder.reportTime}"
@@ -93,9 +93,10 @@
                                                             <td><a class="btn  btn-default btn-xs"
                                                                    onclick="showFixList(${workOrder.equipments.id})"
                                                                    title="查看该设备维修记录"><i
-                                                                    class="glyphicon glyphicon-search"></i></a><a class="btn  btn-default btn-xs"
-                                                                   onclick="showClassFixList(${workOrder.locations.id},${workOrder.equipmentsClassification.id})"
-                                                                   title="查看该站同类设备维修记录"><i
+                                                                    class="glyphicon glyphicon-search"></i></a><a
+                                                                    class="btn  btn-default btn-xs"
+                                                                    onclick="showClassFixList(${workOrder.locations.id},${workOrder.equipmentsClassification.id})"
+                                                                    title="查看该站同类设备维修记录"><i
                                                                     class="glyphicon glyphicon-list"></i></a></td>
                                                         </tr>
                                                     </c:forEach>
@@ -186,7 +187,6 @@
         </div>
     </div>
 </div>
-
 
 
 <!-- SAMPLE BOX CONFIGURATION MODAL FORM-->

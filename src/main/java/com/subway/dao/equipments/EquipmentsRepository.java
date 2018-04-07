@@ -104,7 +104,6 @@ public interface EquipmentsRepository extends CrudRepository<Equipments, Long>, 
     List<Long> findAllId();
 
 
-
     //      new version for searching
 
 
@@ -115,8 +114,8 @@ public interface EquipmentsRepository extends CrudRepository<Equipments, Long>, 
      * @param authKey     数据授权码
      * @return 根据 设备分类  设备描述  设备位置  数据授权码查询 设备信息
      */
-    List<Equipments> findByEquipmentsClassification_DescriptionAndDescriptionContainingAndLocations_DescriptionContainingAndLocationStartingWith
-    (String eqClassName, String eqName, String locName, String authKey);
+    List<Equipments> findByLocationStartingWithAndEquipmentsClassification_DescriptionContainingAndDescriptionContainingAndLocations_DescriptionContaining
+    (String authKey, String eqClassName, String eqName, String locName);
 
 
     /**
@@ -127,6 +126,6 @@ public interface EquipmentsRepository extends CrudRepository<Equipments, Long>, 
      * @param pageable    分页参数
      * @return 根据 设备分类  设备描述  设备位置  数据授权码查询 设备信息
      */
-    Page<Equipments> findByEquipmentsClassification_DescriptionAndDescriptionContainingAndLocations_DescriptionContainingAndLocationStartingWith
-    (String eqClassName, String eqName, String locName, String authKey, Pageable pageable);
+    Page<Equipments> findByLocationStartingWithAndEquipmentsClassification_DescriptionContainingAndDescriptionContainingAndLocations_DescriptionContaining
+    (String authKey, String eqClassName, String eqName, String locName, Pageable pageable);
 }

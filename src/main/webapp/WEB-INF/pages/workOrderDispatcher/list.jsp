@@ -77,7 +77,7 @@
                                                             <td>${w.index+1}</td>
                                                             <td>${workOrder.orderLineNo}</td>
                                                             <td><a onclick="showEqDetailByEqId(${workOrder.equipments.id})">${workOrder.equipments.description}</a></td>
-                                                            <td>${workOrder.vlocations.locName}</td>
+                                                            <td>${workOrder.locations.description}</td>
                                                             <td>${workOrder.equipmentsClassification.description}</td>
                                                             <td>${workOrder.orderDesc}</td>
                                                             <td><fmt:formatDate value="${workOrder.reportTime}" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></td>

@@ -186,20 +186,32 @@ $(function () {
             "report": function (column, row) {
                 return '<a class="btn btn-default btn-xs"  onclick="report(' + row.id + ')" title="报修" ><i class="glyphicon glyphicon-wrench"></i></a>'
             }
+        },
+        converters: {
+            showLocName: {
+                to: showLocName
+            },
+            showEqClass: {
+                to: showEqClass
+            }, showRunStatus: {
+                to: showRunStatus
+            }, showStatus: {
+                to: showStatus
+            }
         }
     };
-    //初始化加载列表
+//初始化加载列表
     initBootGridMenu(dataTableName, config);
 
 
-    // loadEqList(dataTableName, config);
+// loadEqList(dataTableName, config);
 
 
-    //验证保存信息
+//验证保存信息
     validateForm(validateOptions);
     initSelect();
-    // search();
-    // showDetail();
+// search();
+// showDetail();
 
 
     historyTab.on('click', function () {
@@ -209,7 +221,8 @@ $(function () {
     recordsTab.on('click', function () {
         showUpdateRecords.call();
     });
-});
+})
+;
 
 
 function showFixHistory() {
