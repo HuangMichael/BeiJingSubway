@@ -2,11 +2,11 @@ package com.subway.service.equipments;
 
 import com.subway.dao.equipments.EqAddBillRepository;
 import com.subway.dao.equipments.VEqAddBillRepository;
-import com.subway.dao.locations.VlocationsRepository;
+import com.subway.dao.locations.LocationsRepository;
 import com.subway.domain.equipments.EqAddBill;
 import com.subway.domain.equipments.Equipments;
 import com.subway.domain.equipments.VEqAddBill;
-import com.subway.domain.locations.Vlocations;
+import com.subway.domain.locations.Locations;
 import com.subway.service.app.BaseService;
 import com.subway.utils.CommonStatusType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +34,7 @@ public class EqAddBillService extends BaseService {
     EquipmentAccountService equipmentAccountService;
 
     @Autowired
-    VlocationsRepository vlocationsRepository;
+    LocationsRepository LocationsRepository;
 
 
     /**
@@ -118,14 +118,14 @@ public class EqAddBillService extends BaseService {
      */
     @Transactional
     public Equipments addEq(EqAddBill eqAddBill) {
-        Vlocations vlocations = vlocationsRepository.findById(eqAddBill.getLocation().getId());
+        Locations Locations = LocationsRepository.findById(eqAddBill.getLocation().getId());
         Equipments equipments = new Equipments();
         equipments.setEqCode(eqAddBill.getEqCode());
         equipments.setEquipmentsClassification(eqAddBill.getEqClass());
 //        equipments.setLocations(eqAddBill.getLocation());
-        equipments.setLocation(vlocations.getLocation());
+        equipments.setLocation(Locations.getLocation());
         equipments.setDescription(eqAddBill.getEqName());
-        equipments.setVlocations(vlocations);
+        equipments.setLocations(Locations);
         equipments.setRunning(CommonStatusType.STATUS_ON);
         equipments.setStatus(CommonStatusType.STATUS_YES);
         equipments = equipmentAccountService.save(equipments);

@@ -1,6 +1,7 @@
 package com.subway.domain.user;
 
 
+import com.subway.domain.locations.Locations;
 import com.subway.domain.locations.Vlocations;
 import com.subway.domain.person.Person;
 import com.subway.domain.role.Role;
@@ -36,8 +37,8 @@ public class User {
     private Person person;
 
     @OneToOne
-    @JoinColumn(name = "vlocations_id")
-    private Vlocations vlocations;
+    @JoinColumn(name = "locations_id")
+    private Locations locations;
 
     /*    @Column(length = 20)
         private String location;*/

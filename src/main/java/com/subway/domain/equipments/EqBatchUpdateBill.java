@@ -57,7 +57,7 @@ public class EqBatchUpdateBill {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "location_id", referencedColumnName = "id")
-    Vlocations locations; //位置
+    Locations locations; //位置
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "eq_class_id", referencedColumnName = "id")

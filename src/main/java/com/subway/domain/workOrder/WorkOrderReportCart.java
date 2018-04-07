@@ -16,10 +16,6 @@ import java.util.List;
 @Entity
 @Table(name = "T_WORK_ORDER_REPORT_CART")
 @Data
-@Setter
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
 /**
  * 报修车信息
  * */
@@ -30,9 +26,7 @@ public class WorkOrderReportCart {
     @Column(length = 20, unique = true, nullable = false)
     private String orderLineNo; //工单编号行号
     private String orderDesc;  //故障描述
-    @OneToOne
-    @JoinColumn(name = "locations_id")
-    private Locations locations;
+
     @OneToOne
     @JoinColumn(name = "equipments_id")
     private Equipments equipments;
@@ -68,9 +62,12 @@ public class WorkOrderReportCart {
 
     @Column(length = 1)
     private String status;
+
+
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "vlocations_id", referencedColumnName = "id")
-    private Vlocations vlocations;  //所属位置
+    @JoinColumn(name = "locations_id", referencedColumnName = "id")
+    private Locations locations;  //所属位置
 
 
     //一个分类有多个子分类

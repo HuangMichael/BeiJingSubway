@@ -5,7 +5,7 @@ import com.subway.controller.common.BaseController;
 import com.subway.dao.equipments.EquipmentsClassificationRepository;
 import com.subway.dao.equipments.EquipmentsRepository;
 import com.subway.dao.equipments.VequipmentsRepository;
-import com.subway.dao.locations.VlocationsRepository;
+import com.subway.dao.locations.LocationsRepository;
 import com.subway.domain.app.MyPage;
 import com.subway.domain.equipments.EqUpdateBill;
 import com.subway.domain.equipments.Equipments;
@@ -51,6 +51,9 @@ import java.util.Map;
 public class EquipmentController extends BaseController implements LocationSeparatable {
 
 
+    private static final Integer SEARCH_PARAM_SIZE = 4;
+
+
     Log log = LogFactory.getLog(this.getClass());
 
     @Autowired
@@ -65,7 +68,7 @@ public class EquipmentController extends BaseController implements LocationSepar
     LocationsService locationsService;
 
     @Autowired
-    VlocationsRepository vlocationsRepository;
+    LocationsRepository LocationsRepository;
     @Autowired
     VequipmentsRepository vequipmentsRepository;
 
@@ -122,7 +125,7 @@ public class EquipmentController extends BaseController implements LocationSepar
         log.info("searchPhrase-------------------" + searchPhrase);
         Map<String, String[]> parameterMap = request.getParameterMap();
         Pageable pageable = new PageRequest(current - 1, rowCount.intValue(), super.getSort(parameterMap));
-        return new PageUtils().searchBySortService(equipmentSearchService, searchPhrase, 4, current, rowCount, pageable);
+        return new PageUtils().searchBySortService(equipmentSearchService, searchPhrase, SEARCH_PARAM_SIZE, current, rowCount, pageable);
     }
 
 
@@ -134,7 +137,7 @@ public class EquipmentController extends BaseController implements LocationSepar
     @ResponseBody
     public List<Vequipments> findMyEqs(HttpSession session) {
         User user = (User) session.getAttribute("currentUser");
-        String userLocation = user.getVlocations().getLocation();
+        String userLocation = user.getLocations().getLocation();
         return vequipmentsRepository.findByLocationStartingWith(userLocation);
     }
 
@@ -315,40 +318,6 @@ public class EquipmentController extends BaseController implements LocationSepar
     }
 
 
-//    /**
-//     * 查询根节点
-//     */
-//    @RequestMapping(value = "/add", method = RequestMethod.POST)
-//    @ResponseBody
-//    public Equipments add(
-//            @RequestParam("eqCode") String eqCode,
-//            @RequestParam(value = "description", required = false) String description,
-//            @RequestParam(value = "manager", required = false) String manager,
-//            @RequestParam(value = "maintainer", required = false) String maintainer,
-//            @RequestParam(value = "productFactory", required = false) String productFactory,
-//            @RequestParam(value = "locations_id", required = false) Long locations_id,
-//            @RequestParam(value = "equipmentsClassification_id", required = false) Long equipmentsClassification_id,
-//            @RequestParam(value = "status", defaultValue = "1") String status
-//    ) {
-//        Equipments equipments = new Equipments();
-//        try {
-//            equipments.setEqCode(eqCode);
-//            equipments.setDescription(description);
-//            equipments.setManager(manager);
-//            equipments.setMaintainer(maintainer);
-//            equipments.setProductFactory(productFactory);
-//            equipments.setVLocations(locationsService.findById(locations_id));
-//            equipments.setEquipmentsClassification(equipmentsClassificationRepository.findById(equipmentsClassification_id));
-//            equipments.setStatus(status);
-//            equipments.setLocation(equipments.getLocations().getLocation());
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return equipmentAccountService.save(equipments);
-//
-//    }
-
     /**
      * @param eqCode 设备编号
      * @return 查询设备编号是否存在
@@ -406,7 +375,7 @@ public class EquipmentController extends BaseController implements LocationSepar
         if (separatable) {
             param += location + ",";
         }
-        List<Vequipments> dataList = equipmentSearchService.findByConditions(param, 5);
+        List<Equipments> dataList = equipmentSearchService.findByConditions(param, SEARCH_PARAM_SIZE + 1);
         equipmentSearchService.setDataList(dataList);
         equipmentSearchService.exportExcel(request, response, docName, titles, colNames);
     }

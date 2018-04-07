@@ -56,7 +56,7 @@ public class EqBatchUpdateBillService extends BaseService {
         Equipments equipments = eqBatchUpdateBillDetailList.get(0).getEquipments();
         VeqClass veqClass = veqClassRepository.findById(equipments.getEquipmentsClassification().getId());
         eqBatchUpdateBill.setEqClass(veqClass);
-        eqBatchUpdateBill.setLocations(equipments.getVlocations());
+        eqBatchUpdateBill.setLocations(equipments.getLocations());
         eqBatchUpdateBill = eqBatchUpdateBillRepository.save(eqBatchUpdateBill);
         return eqBatchUpdateBill;
     }
@@ -109,10 +109,10 @@ public class EqBatchUpdateBillService extends BaseService {
             newEq.setEqCode(equipments.getEqCode() + "-1");
             newEq.setDescription(equipments.getDescription());
             newEq.setLocation(equipments.getLocation());
-            newEq.setVlocations(equipments.getVlocations());
+            newEq.setLocations(equipments.getLocations());
             newEq.setEquipmentsClassification(equipments.getEquipmentsClassification());
             newEq.setStatus(CommonStatusType.EQ_NORMAL);
-            newEq.setVlocations(equipments.getVlocations());
+//            newEq.setVlocations(equipments.getVlocations());
             equipmentAccountService.save(newEq);
             // 根据设备的设备位置、设备分类、生成设备编号,新增设备 将就设备报废  生成报废历史
         }

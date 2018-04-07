@@ -8,7 +8,7 @@ import com.subway.dao.equipments.VequipmentsRepository;
 import com.subway.dao.line.LineRepository;
 import com.subway.dao.line.StationRepository;
 import com.subway.dao.locations.LocationsRepository;
-import com.subway.dao.locations.VlocationsRepository;
+import com.subway.dao.locations.LocationsRepository;
 import com.subway.dao.outsourcingUnit.OutsourcingUnitRepository;
 import com.subway.dao.person.PersonRepository;
 import com.subway.dao.workOrder.WorkOrderReportCartRepository;
@@ -19,7 +19,7 @@ import com.subway.domain.equipments.Vequipments;
 import com.subway.domain.line.Line;
 import com.subway.domain.line.Station;
 import com.subway.domain.locations.Locations;
-import com.subway.domain.locations.Vlocations;
+import com.subway.domain.locations.Locations;
 import com.subway.domain.person.Person;
 import com.subway.domain.units.Units;
 import com.subway.domain.user.User;
@@ -59,7 +59,7 @@ public class CommonDataService extends BaseService {
     LocationsRepository locationsRepository;
 
     @Autowired
-    VlocationsRepository vlocationsRepository;
+    LocationsRepository LocationsRepository;
 
     @Autowired
     VeqClassRepository veqClassRepository;
@@ -120,9 +120,9 @@ public class CommonDataService extends BaseService {
      * @return 查询我的下属位置信息
      * 先从session中找  如果失败再做查询
      */
-    @Cacheable(value = "vLocations", key = "'vlocations'")
-    public List<Vlocations> findMyVLocation() {
-        return vlocationsRepository.findByLocationStartingWith("BJ");
+    @Cacheable(value = "Locations", key = "'Locations'")
+    public List<Locations> findMyVLocation() {
+        return LocationsRepository.findByLocationStartingWith("BJ");
     }
 
 
@@ -266,8 +266,8 @@ public class CommonDataService extends BaseService {
 
         List<Line> lineList = lineService.findByStatus("1");
         List<Station> stationList = stationService.findByStatus("1");
-        List<Vlocations> locationsList = locationsService.findByLocationStartingWithAndStatus(currentUser.getVlocations().getLocation());
-        List<Locations> locList = locationsService.findByLocationStartingWithAndStatus(currentUser.getVlocations().getLocation(), "1");
+        List<Locations> locationsList = locationsService.findByLocationStartingWithAndStatus(currentUser.getLocations().getLocation());
+        List<Locations> locList = locationsService.findByLocationStartingWithAndStatus(currentUser.getLocations().getLocation(), "1");
         List<VeqClass> veqClassList = veqClassRepository.findAll();
         List<Resource> menusList = findMenus();
         session.setAttribute("locationsList", locationsList);

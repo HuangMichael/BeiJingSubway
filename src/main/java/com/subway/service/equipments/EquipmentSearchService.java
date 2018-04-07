@@ -1,6 +1,8 @@
 package com.subway.service.equipments;
 
+import com.subway.dao.equipments.EquipmentsRepository;
 import com.subway.dao.equipments.VEqRepository;
+import com.subway.domain.equipments.Equipments;
 import com.subway.domain.equipments.Vequipments;
 import com.subway.service.app.BaseService;
 import com.subway.utils.SessionUtil;
@@ -20,24 +22,8 @@ import java.util.List;
  */
 @Service
 public class EquipmentSearchService extends BaseService implements SortedSearchable, DataSeparatable {
-
     @Autowired
-    VEqRepository vEqRepository;
-
-    public Page<Vequipments> findByConditions(String searchPhrase, int paramsSize, Pageable pageable) {
-        String array[] = super.assembleSearchArray(searchPhrase, paramsSize, true, addConditionToService());
-        return vEqRepository.findByLocationContainsAndEqClassContainsAndEqCodeContainsAndEqNameContainsAndLocNameContains(array[0], array[1], array[2], array[3], array[4], pageable);
-    }
-
-
-    /**
-     * @param searchPhrase
-     * @return 根据角色描述关键字进行查询
-     */
-    public List<Vequipments> findByConditions(String searchPhrase, int paramsSize) {
-        String array[] = super.assembleSearchArray(searchPhrase, paramsSize);
-        return vEqRepository.findByLocationContainsAndEqClassContainsAndEqCodeContainsAndEqNameContainsAndLocNameContains(array[0], array[1], array[2], array[3], array[4]);
-    }
+    EquipmentsRepository equipmentsRepository;
 
 
     /**
@@ -47,4 +33,29 @@ public class EquipmentSearchService extends BaseService implements SortedSearcha
 
         return "";
     }
+
+
+    /**
+     * @param searchPhrase 搜索关键字组合
+     * @param paramsSize
+     * @param pageable
+     * @return
+     */
+    public Page<Equipments> findByConditions(String searchPhrase, int paramsSize, Pageable pageable) {
+        String array[] = super.assembleSearchArray(searchPhrase, paramsSize);
+        return equipmentsRepository.findByEquipmentsClassification_DescriptionAndDescriptionContainingAndLocations_DescriptionContainingAndLocationStartingWith(array[0], array[1], array[2], array[3], pageable);
+    }
+
+
+    /**
+     * @param searchPhrase 搜索关键字组合
+     * @param paramsSize
+     * @return
+     */
+    public List<Equipments> findByConditions(String searchPhrase, int paramsSize) {
+        String array[] = super.assembleSearchArray(searchPhrase, paramsSize);
+        return equipmentsRepository.findByEquipmentsClassification_DescriptionAndDescriptionContainingAndLocations_DescriptionContainingAndLocationStartingWith(array[0], array[1], array[2], array[3]);
+    }
+
+
 }

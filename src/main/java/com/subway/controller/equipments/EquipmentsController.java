@@ -5,7 +5,7 @@ import com.subway.controller.common.BaseController;
 import com.subway.dao.equipments.EquipmentsClassificationRepository;
 import com.subway.dao.equipments.EquipmentsRepository;
 import com.subway.dao.equipments.VequipmentsRepository;
-import com.subway.dao.locations.VlocationsRepository;
+import com.subway.dao.locations.LocationsRepository;
 import com.subway.domain.app.MyPage;
 import com.subway.domain.equipments.EqUpdateBill;
 import com.subway.domain.equipments.Equipments;
@@ -65,7 +65,7 @@ public class EquipmentsController extends BaseController implements LocationSepa
     LocationsService locationsService;
 
     @Autowired
-    VlocationsRepository vlocationsRepository;
+    LocationsRepository LocationsRepository;
     @Autowired
     VequipmentsRepository vequipmentsRepository;
 
@@ -129,7 +129,7 @@ public class EquipmentsController extends BaseController implements LocationSepa
     @ResponseBody
     public List<Vequipments> findMyEqs(HttpSession session) {
         User user = (User) session.getAttribute("currentUser");
-        String userLocation = user.getVlocations().getLocation();
+        String userLocation = user.getLocations().getLocation();
         return vequipmentsRepository.findByLocationStartingWith(userLocation);
     }
 
@@ -332,7 +332,7 @@ public class EquipmentsController extends BaseController implements LocationSepa
 //            equipments.setManager(manager);
 //            equipments.setMaintainer(maintainer);
 //            equipments.setProductFactory(productFactory);
-//            equipments.setVLocations(locationsService.findById(locations_id));
+//            equipments.setLocations(locationsService.findById(locations_id));
 //            equipments.setEquipmentsClassification(equipmentsClassificationRepository.findById(equipmentsClassification_id));
 //            equipments.setStatus(status);
 //            equipments.setLocation(equipments.getLocations().getLocation());
@@ -401,7 +401,7 @@ public class EquipmentsController extends BaseController implements LocationSepa
         if (separatable) {
             param += location + ",";
         }
-        List<Vequipments> dataList = equipmentSearchService.findByConditions(param, 5);
+        List<Equipments> dataList = equipmentSearchService.findByConditions(param, 5);
         equipmentSearchService.setDataList(dataList);
         equipmentSearchService.exportExcel(request, response, docName, titles, colNames);
     }

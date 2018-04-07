@@ -2,6 +2,7 @@ package com.subway.dao.equipments;
 
 
 import com.subway.domain.equipments.Equipments;
+import com.subway.domain.equipments.EquipmentsClassification;
 import com.subway.domain.equipments.VeqClass;
 import com.subway.domain.equipments.Vequipments;
 import com.subway.domain.locations.Locations;
@@ -112,4 +113,28 @@ public interface EquipmentsRepository extends CrudRepository<Equipments, Long>, 
     List<Equipments> findByLocationAndEquipmentsClassificationAndStatus(Vlocations vlocations, VeqClass veqClass, String status);
 
 
+    //      new version for searching
+
+
+    /**
+     * @param eqClassName 设备分类名称
+     * @param eqName      设备描述
+     * @param locName     设备位置名称
+     * @param authKey     数据授权码
+     * @return 根据 设备分类  设备描述  设备位置  数据授权码查询 设备信息
+     */
+    List<Equipments> findByEquipmentsClassification_DescriptionAndDescriptionContainingAndLocations_DescriptionContainingAndLocationStartingWith
+    (String eqClassName, String eqName, String locName, String authKey);
+
+
+    /**
+     * @param eqClassName 设备分类名称
+     * @param eqName      设备描述
+     * @param locName     设备位置名称
+     * @param authKey     数据授权码
+     * @param pageable    分页参数
+     * @return 根据 设备分类  设备描述  设备位置  数据授权码查询 设备信息
+     */
+    Page<Equipments> findByEquipmentsClassification_DescriptionAndDescriptionContainingAndLocations_DescriptionContainingAndLocationStartingWith
+    (String eqClassName, String eqName, String locName, String authKey, Pageable pageable);
 }

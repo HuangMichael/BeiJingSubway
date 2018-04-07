@@ -203,9 +203,9 @@ public class LocationsService extends BaseService {
      * @param location
      * @return 根据位置编码模糊查询
      */
-    public List<Vlocations> findByLocationStartingWithAndStatus(String location) {
+    public List<Locations> findByLocationStartingWithAndStatus(String location) {
 
-        return vlocationsRepository.findByLocationStartingWith(location);
+        return locationsRepository.findByLocationStartingWith(location);
     }
 
 
@@ -226,7 +226,7 @@ public class LocationsService extends BaseService {
         String location = "";
         for (String classDesc : locArray) {
             //查询是否已经存在 类型和名称确定唯一一个设备类型
-            classDesc=classDesc.trim();
+            classDesc = classDesc.trim();
             locationsList = locationsRepository.findByParentAndDescription(cid, classDesc);
             if (locationsList.isEmpty()) {
                 newLoc = new Locations();

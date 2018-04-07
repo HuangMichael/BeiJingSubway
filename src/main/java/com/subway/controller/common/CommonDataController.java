@@ -49,7 +49,7 @@ public class CommonDataController extends BaseController {
      */
     @RequestMapping(value = "/findMyLoc", method = RequestMethod.GET)
     @ResponseBody
-    public List<Vlocations> findMyLoc() {
+    public List<Locations> findMyLoc() {
         return commonDataService.findMyVLocation();
     }
 

@@ -1,6 +1,7 @@
 package com.subway.domain.equipments;
 
 
+import com.subway.domain.locations.Locations;
 import com.subway.domain.locations.Vlocations;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -50,14 +51,14 @@ public class Equipments {
     @Column(scale = 2)
     private Double netValue; //净值
 
-//    @ManyToOne( fetch = FetchType.LAZY)
-//    @JoinColumn(name = "locations_id", referencedColumnName = "id")
-//    private Locations locations;  //所属位置
+    @ManyToOne( fetch = FetchType.LAZY)
+    @JoinColumn(name = "locations_id", referencedColumnName = "id")
+    private Locations locations;  //所属位置
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "vlocations_id", referencedColumnName = "id")
-    private Vlocations vlocations;  //所属位置
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "vlocations_id", referencedColumnName = "id")
+//    private Vlocations vlocations;  //所属位置
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "equipments_Classification_id", referencedColumnName = "id")

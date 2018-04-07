@@ -52,7 +52,7 @@ public class EquipmentsClassification {
     private Long sortNo;
     @JsonBackReference("unitSet")
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
-    @JoinTable(name = "t_unit_class", joinColumns = { @JoinColumn(name = "unit_id", nullable = false)}, inverseJoinColumns = {@JoinColumn(name = "class_id", nullable = false)})
+    @JoinTable(name = "t_unit_class", joinColumns = {@JoinColumn(name = "unit_id", nullable = false)}, inverseJoinColumns = {@JoinColumn(name = "class_id", nullable = false)})
     private List<Units> unitSet;
 
 

@@ -2,11 +2,11 @@ package com.subway.controller.locations;
 
 import com.subway.controller.common.BaseController;
 import com.subway.dao.equipments.VequipmentsRepository;
-import com.subway.dao.locations.VlocationsRepository;
+import com.subway.dao.locations.LocationsRepository;
 import com.subway.domain.equipments.Equipments;
 import com.subway.domain.equipments.Vequipments;
 import com.subway.domain.locations.Locations;
-import com.subway.domain.locations.Vlocations;
+import com.subway.domain.locations.Locations;
 import com.subway.domain.user.User;
 import com.subway.object.ReturnObject;
 import com.subway.service.app.ResourceService;
@@ -52,7 +52,7 @@ public class LocationController extends BaseController {
     EquipmentAccountService equipmentAccountService;
 
     @Autowired
-    VlocationsRepository vlocationsRepository;
+    LocationsRepository LocationsRepository;
 
 
     /**
@@ -98,8 +98,8 @@ public class LocationController extends BaseController {
     public List<Object> findTree(HttpSession httpSession) {
         List<Object> objectList = null;
         User user = SessionUtil.getCurrentUserBySession(httpSession);
-        if (user.getVlocations().getLocation() != null && !user.getVlocations().getLocation().equals("")) {
-            objectList = locationsService.findTree(user.getVlocations().getLocation() + "%");
+        if (user.getLocations().getLocation() != null && !user.getLocations().getLocation().equals("")) {
+            objectList = locationsService.findTree(user.getLocations().getLocation() + "%");
         }
         return objectList;
     }
@@ -211,7 +211,7 @@ public class LocationController extends BaseController {
         for (Equipments equipments : equipmentsList) {
 //            equipments.setLocations(locations);
             equipments.setLocation(locations.getLocation());
-            equipments.setVlocations(vlocationsRepository.findById(locationId));
+            equipments.setLocations(LocationsRepository.findById(locationId));
             equipments.setStatus("1");
         }
         importService.importData(equipmentAccountService, equipmentsList);
@@ -225,9 +225,9 @@ public class LocationController extends BaseController {
      */
     @RequestMapping(value = "/findLocNameById/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public Vlocations findLocNameById(@PathVariable("id") Long id) {
-        Vlocations vlocations = vlocationsRepository.findById(id);
-        return vlocations;
+    public Locations findLocNameById(@PathVariable("id") Long id) {
+        Locations Locations = LocationsRepository.findById(id);
+        return Locations;
     }
 
 

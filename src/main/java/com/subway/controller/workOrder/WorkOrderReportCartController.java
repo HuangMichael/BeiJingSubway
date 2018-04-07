@@ -56,7 +56,7 @@ public class WorkOrderReportCartController extends BaseController {
     public String list(ModelMap modelMap, HttpSession httpSession) {
         super.list(httpSession, modelMap);
         User user = SessionUtil.getCurrentUserBySession(httpSession);
-        String userLocation = user.getVlocations().getLocation();
+        String userLocation = user.getLocations().getLocation();
         List<WorkOrderReportCart> workOrderReportCartList = workOrderReportCartService.findByLocationStartingWithAndNodeState(userLocation, "报修车");
         modelMap.put("workOrderReportCartList", workOrderReportCartList);
         return "/workOrderReportCart/list";

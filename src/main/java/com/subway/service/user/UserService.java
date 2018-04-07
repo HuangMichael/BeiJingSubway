@@ -1,9 +1,9 @@
 package com.subway.service.user;
 
-import com.subway.dao.locations.VlocationsRepository;
+import com.subway.dao.locations.LocationsRepository;
 import com.subway.dao.person.PersonRepository;
 import com.subway.dao.user.UserRepository;
-import com.subway.domain.locations.Vlocations;
+import com.subway.domain.locations.Locations;
 import com.subway.domain.person.Person;
 import com.subway.domain.user.User;
 import com.subway.object.ReturnObject;
@@ -35,7 +35,7 @@ public class UserService extends BaseService {
     UserRepository userRepository;
 
     @Autowired
-    VlocationsRepository vlocationsRepository;
+    LocationsRepository LocationsRepository;
 
     @Autowired
     CommonDataService commonDataService;
@@ -72,7 +72,7 @@ public class UserService extends BaseService {
             user.setPassword(MD5Util.md5("123456"));
         }
     /*    if (user.getLocation() == null) {
-           // System.out.println("user.getVlocations()-----" + user.getVlocations().getLocName());
+           // System.out.println("user.getLocations()-----" + user.getLocations().getLocName());
             user.setLocation("BJ");
         }*/
         if (user.getSortNo() == 0) {
@@ -189,7 +189,7 @@ public class UserService extends BaseService {
      * @return
      */
     public ReturnObject grantDataAuth(Long locationId, String userIds) {
-        Vlocations vlocations = vlocationsRepository.findById(locationId);
+        Locations Locations = LocationsRepository.findById(locationId);
         String userIdArray[] = userIds.split(",");
         Long userId = null;
         User user = null;
@@ -197,11 +197,11 @@ public class UserService extends BaseService {
         for (String str : userIdArray) {
             userId = Long.parseLong(str);
             user = userRepository.findById(userId);
-            user.setVlocations(vlocations);
+            user.setLocations(Locations);
             userRepository.save(user);
             users.add(user);
         }
-        String msg = vlocations.getLocName() + users.size() + "个用户";
+        String msg = Locations.getDescription() + users.size() + "个用户";
         return commonDataService.getReturnType(!users.isEmpty(), msg + "数据授权成功", "数据授权失败，请重试");
     }
 
@@ -232,9 +232,9 @@ public class UserService extends BaseService {
         boolean result = false;
         User user = userRepository.findById(userId);
         if (user != null) {
-            user.setVlocations(null);
+            user.setLocations(null);
             user = userRepository.save(user);
-            result = user.getVlocations() == null;
+            result = user.getLocations() == null;
         }
         return result;
     }

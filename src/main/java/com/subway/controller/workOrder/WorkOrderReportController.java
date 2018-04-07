@@ -83,7 +83,7 @@ public class WorkOrderReportController extends BaseController {
     public List<WorkOrderReportCart> generateReport(@RequestParam("ids") String ids, HttpSession session) {
         User user = SessionUtil.getCurrentUserBySession(session);
         List<WorkOrderReportCart> workOrderReportDetailList = new ArrayList<WorkOrderReportCart>();
-        if (user != null && user.getVlocations().getLocation() != null && user.getPerson() != null) {
+        if (user != null && user.getLocations().getLocation() != null && user.getPerson() != null) {
             workOrderReportDetailList = workOrderReportService.generateReport(ids);
         }
         return workOrderReportDetailList;

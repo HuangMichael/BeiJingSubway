@@ -2,11 +2,11 @@ package com.subway.controller.user;
 
 
 import com.subway.controller.common.BaseController;
-import com.subway.dao.locations.VlocationsRepository;
+import com.subway.dao.locations.LocationsRepository;
 import com.subway.dao.person.PersonRepository;
 import com.subway.dao.user.UserRepository;
 import com.subway.domain.app.MyPage;
-import com.subway.domain.locations.Vlocations;
+import com.subway.domain.locations.Locations;
 import com.subway.domain.user.User;
 import com.subway.object.ReturnObject;
 import com.subway.service.app.ResourceService;
@@ -56,7 +56,7 @@ public class UserController extends BaseController {
     PersonRepository personRepository;
 
     @Autowired
-    VlocationsRepository vlocationsRepository;
+    LocationsRepository LocationsRepository;
 
     @Autowired
     ResourceService resourceService;
@@ -121,9 +121,9 @@ public class UserController extends BaseController {
         User user = new User();
         user.setUserName(userName);
         user.setPerson(personRepository.findById(personId));
-        Vlocations vlocations = vlocationsRepository.findById(locationId);
-        user.setVlocations(vlocations);
-        //  user.setLocation(vlocations.getLocation());
+        Locations Locations = LocationsRepository.findById(locationId);
+        user.setLocations(Locations);
+        //  user.setLocation(Locations.getLocation());
         user = userService.createUser(user);
         ReturnObject returnObject = new ReturnObject();
         returnObject.setResult(user != null);
