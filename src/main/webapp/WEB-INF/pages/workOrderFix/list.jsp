@@ -84,7 +84,7 @@
                                                         </select>
                                                     </div>
                                                     <div class="col-md-1">
-                                                        <button id="searchBtn" class="btn btn-default"
+                                                        <button id="searchBtn" class="btn btn-danger"
                                                                 onclick="searchMore()">查询
                                                         </button>
                                                     </div>

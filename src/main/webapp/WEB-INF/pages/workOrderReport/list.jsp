@@ -58,7 +58,7 @@
 
 
                                                 <div class="col-md-2">
-                                                    <button id="searchBtn" class="btn btn-default" onclick="search()">查询
+                                                    <button id="searchBtn" class="btn btn-danger" onclick="search()">查询
                                                     </button>
                                                 </div>
                                             </div>
